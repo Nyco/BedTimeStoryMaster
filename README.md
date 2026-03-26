@@ -1,4 +1,10 @@
-# BedTimeStoryMaster-lt
+# BedTimeStoryMaster
+
+Create bed time story for your hildern in under a minute!
+
+This app allows adults to select a wide range of story parameters to create a prompt, for them to copy and paste in their preferred AI/LLM.
+
+# Tech
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
 
