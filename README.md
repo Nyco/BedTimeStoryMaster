@@ -1,6 +1,6 @@
 # BedTimeStoryMaster
 
-Create bed time story for your hildern in under a minute!
+Create bed time story for your children, in one minute!
 
 This app allows adults to select a wide range of story parameters to create a prompt, for them to copy and paste in their preferred AI/LLM.
 
