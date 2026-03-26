@@ -47,6 +47,13 @@ const FORM_OPTIONS = {
     { value: "proud", label: "Fier & valorisant" },
     { value: "moral", label: "Petite leçon de vie" },
   ],
+  challenge: [
+    { value: "fear", label: "Peur (noir, solitude, inconnu)" },
+    { value: "problem", label: "Problème à résoudre" },
+    { value: "danger", label: "Quelqu'un en danger" },
+    { value: "misunderstanding", label: "Malentendu" },
+    { value: "competition", label: "Compétition" },
+  ],
   // Characters section
   hero: [
     { value: "explorer", label: "Explorateur curieux" },
@@ -56,11 +63,12 @@ const FORM_OPTIONS = {
     { value: "troublemaker", label: "Farceur espiègle" },
   ],
   villain: [
-    { value: "fear", label: "Peur (noir, solitude, inconnu)" },
-    { value: "problem", label: "Problème à résoudre" },
-    { value: "danger", label: "Quelqu'un en danger" },
-    { value: "misunderstanding", label: "Malentendu" },
-    { value: "competition", label: "Compétition" },
+    { value: "mirror", label: "Le Reflet Sombre" },
+    { value: "believer", label: "Le Croyant Fanatique" },
+    { value: "chaos", label: "L'Agent du Chaos" },
+    { value: "authority", label: "L'Autorité Corrompue" },
+    { value: "nature", label: "La Force de la Nature" },
+    { value: "none", label: "Pas de villain" },
   ],
   mentor: [
     { value: "animal", label: "Animal sage" },
@@ -86,6 +94,7 @@ type FormValues = {
   world: string
   theme: string
   tone: string
+  challenge: string
   // Characters section
   hero: string
   villain: string
@@ -110,7 +119,6 @@ function getRandomOption<T>(options: T[]): T {
 
 function generatePrompt(values: FormValues): string {
   const heroName = generateName()
-  const villainName = generateName()
   const mentorName = values.mentor !== "none" ? generateName() : null
   const tricksterName = values.trickster !== "none" ? generateName() : null
 
@@ -131,12 +139,21 @@ function generatePrompt(values: FormValues): string {
     troublemaker: "un farceur espiègle",
   }
 
+  const challengeLabels: Record<string, string> = {
+    fear: "affronter ses peurs (le noir, la solitude, l'inconnu)",
+    problem: "résoudre un problème difficile",
+    danger: "sauver quelqu'un en danger",
+    misunderstanding: "clarifier un malentendu",
+    competition: "relever un défi ou une compétition",
+  }
+
   const villainLabels: Record<string, string> = {
-    fear: "incarne les peurs (le noir, la solitude, l'inconnu)",
-    problem: "représente un problème difficile à résoudre",
-    danger: "met quelqu'un en danger",
-    misunderstanding: "crée des malentendus",
-    competition: "défie le héros dans une compétition",
+    mirror: "un reflet sombre partageant les compétences et pouvoirs du héros",
+    believer: "un fanatique convaincu de faire le bien en commettant le mal",
+    chaos: "un nihiliste qui veut simplement voir le monde brûler",
+    authority: "un leader oppressif utilisant le système pour écraser les autres",
+    nature: "une force primale imparable avec laquelle on ne peut pas raisonner",
+    none: "",
   }
 
   const mentorLabels: Record<string, string> = {
@@ -177,6 +194,8 @@ function generatePrompt(values: FormValues): string {
         ? "adapté aux 4-5 ans, avec un vocabulaire accessible"
         : "adapté aux 6 ans et plus, avec plus de détails et de nuances"
 
+  const villainName = values.villain !== "none" ? generateName() : null
+
   let prompt = `Crée une histoire du soir pour un enfant de ${values.childAge} ans. L'histoire doit être ${ageContext}.
 
 **Durée de lecture** : ${values.duration} minutes
@@ -187,13 +206,19 @@ function generatePrompt(values: FormValues): string {
 
 **Ton** : L'histoire doit être ${toneLabels[values.tone]}
 
+**Défi principal** : ${heroName} devra ${challengeLabels[values.challenge]}
+
 ---
 
 **Personnages :**
 
-**Héros** : ${heroName}, ${heroLabels[values.hero]}
+**Héros** : ${heroName}, ${heroLabels[values.hero]}`
 
-**Antagoniste/Obstacle** : ${villainName}, ${villainLabels[values.villain]}`
+  if (villainName && villainLabels[values.villain]) {
+    prompt += `
+
+**Villain** : ${villainName}, ${villainLabels[values.villain]}`
+  }
 
   if (mentorName && mentorLabels[values.mentor]) {
     prompt += `
@@ -215,15 +240,15 @@ function generatePrompt(values: FormValues): string {
 
 **Acte 1 - Mise en place**
 1. Monde ordinaire : La vie normale de ${heroName} avant tout changement
-2. Appel à l'aventure : Quelque chose perturbe son quotidien (lié à ${villainName})
+2. Appel à l'aventure : Quelque chose perturbe son quotidien${villainName ? ` (lié à ${villainName})` : ""}
 3. Hésitation : ${heroName} doute ou a peur
 4. Rencontre du mentor : ${mentorName ? `${mentorName} apparaît pour l'aider` : "Une idée ou un courage intérieur émerge"}
 5. Passage du seuil : ${heroName} s'engage dans l'aventure
 
 **Acte 2 - Transformation**
 6. Épreuves et alliés : ${heroName} découvre ce nouveau monde${tricksterName ? `, rencontre ${tricksterName}` : ""}
-7. Approche de la grotte : La tension monte face à ${villainName}
-8. Épreuve centrale : ${heroName} affronte ${villainName}
+7. Approche de la grotte : La tension monte${villainName ? ` face à ${villainName}` : ""}
+8. Épreuve centrale : ${heroName} affronte ${villainName ? villainName : "son défi"}
 9. Récompense : ${heroName} gagne quelque chose de précieux (sagesse, objet, confiance)
 10. Chemin du retour : Le retour commence mais tout n'est pas fini
 
@@ -249,6 +274,7 @@ export function StoryForm() {
     world: "",
     theme: "",
     tone: "",
+    challenge: "",
     hero: "",
     villain: "",
     mentor: "",
@@ -265,6 +291,7 @@ export function StoryForm() {
       world: getRandomOption(FORM_OPTIONS.world).value,
       theme: getRandomOption(FORM_OPTIONS.theme).value,
       tone: getRandomOption(FORM_OPTIONS.tone).value,
+      challenge: getRandomOption(FORM_OPTIONS.challenge).value,
       hero: getRandomOption(FORM_OPTIONS.hero).value,
       villain: getRandomOption(FORM_OPTIONS.villain).value,
       mentor: getRandomOption(FORM_OPTIONS.mentor).value,
@@ -342,7 +369,7 @@ export function StoryForm() {
           <h2 className="text-lg font-semibold text-foreground border-b border-border pb-2">
             Histoire
           </h2>
-          <div className="grid gap-5 sm:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2">
             {/* World */}
             <div className="space-y-2">
               <Label htmlFor="world" className="text-sm font-medium text-foreground">
@@ -392,6 +419,25 @@ export function StoryForm() {
                 </SelectTrigger>
                 <SelectContent>
                   {FORM_OPTIONS.tone.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Challenge */}
+            <div className="space-y-2">
+              <Label htmlFor="challenge" className="text-sm font-medium text-foreground">
+                Défi
+              </Label>
+              <Select value={values.challenge} onValueChange={(v) => updateValue("challenge", v)}>
+                <SelectTrigger id="challenge" className="bg-card border-border">
+                  <SelectValue placeholder="Choisir..." />
+                </SelectTrigger>
+                <SelectContent>
+                  {FORM_OPTIONS.challenge.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
                     </SelectItem>
