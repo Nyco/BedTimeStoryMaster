@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Copy, Check, Sparkles } from "lucide-react"
+import { Copy, Check, Sparkles, User, BookOpen, Users } from "lucide-react"
 
 const FORM_OPTIONS = {
   // Child section
@@ -27,16 +27,16 @@ const FORM_OPTIONS = {
   ],
   // Story section
   world: [
-    { value: "space", label: "Aventure spatiale 🚀" },
-    { value: "forest", label: "Forêt magique 🌲" },
-    { value: "dinosaurs", label: "Dinosaures 🦖" },
-    { value: "knights", label: "Chevaliers & châteaux 🏰" },
-    { value: "cowboys", label: "Cowboys 🤠" },
-    { value: "animals", label: "Animaux 🐾" },
+    { value: "space", label: "Aventure spatiale" },
+    { value: "forest", label: "Foret magique" },
+    { value: "dinosaurs", label: "Dinosaures" },
+    { value: "knights", label: "Chevaliers & chateaux" },
+    { value: "cowboys", label: "Cowboys" },
+    { value: "animals", label: "Animaux" },
   ],
   theme: [
     { value: "courage", label: "Courage" },
-    { value: "friendship", label: "Amitié" },
+    { value: "friendship", label: "Amitie" },
     { value: "sharing", label: "Partage" },
     { value: "patience", label: "Patience" },
     { value: "confidence", label: "Confiance en soi" },
@@ -45,43 +45,43 @@ const FORM_OPTIONS = {
     { value: "calm", label: "Calme & apaisant" },
     { value: "happy", label: "Joyeux & heureux" },
     { value: "proud", label: "Fier & valorisant" },
-    { value: "moral", label: "Petite leçon de vie" },
+    { value: "moral", label: "Petite lecon de vie" },
   ],
   challenge: [
     { value: "fear", label: "Peur (noir, solitude, inconnu)" },
-    { value: "problem", label: "Problème à résoudre" },
+    { value: "problem", label: "Probleme a resoudre" },
     { value: "danger", label: "Quelqu'un en danger" },
     { value: "misunderstanding", label: "Malentendu" },
-    { value: "competition", label: "Compétition" },
+    { value: "competition", label: "Competition" },
   ],
   // Characters section
   hero: [
     { value: "explorer", label: "Explorateur curieux" },
-    { value: "dreamer", label: "Rêveur timide" },
+    { value: "dreamer", label: "Reveur timide" },
     { value: "adventurer", label: "Aventurier courageux" },
     { value: "thinker", label: "Penseur malin" },
-    { value: "troublemaker", label: "Farceur espiègle" },
+    { value: "troublemaker", label: "Farceur espiegle" },
   ],
   villain: [
     { value: "mirror", label: "Le Reflet Sombre" },
     { value: "believer", label: "Le Croyant Fanatique" },
     { value: "chaos", label: "L'Agent du Chaos" },
-    { value: "authority", label: "L'Autorité Corrompue" },
+    { value: "authority", label: "L'Autorite Corrompue" },
     { value: "nature", label: "La Force de la Nature" },
     { value: "none", label: "Pas de villain" },
   ],
   mentor: [
     { value: "animal", label: "Animal sage" },
-    { value: "creature", label: "Créature magique" },
-    { value: "friend", label: "Ami plus âgé" },
+    { value: "creature", label: "Creature magique" },
+    { value: "friend", label: "Ami plus age" },
     { value: "object", label: "Objet parlant" },
     { value: "none", label: "Pas de mentor" },
   ],
   trickster: [
     { value: "silly", label: "Personnage rigolo" },
     { value: "chaos", label: "Chaos inattendu" },
-    { value: "funny", label: "Malentendus drôles" },
-    { value: "magic", label: "Magie espiègle" },
+    { value: "funny", label: "Malentendus droles" },
+    { value: "magic", label: "Magie espiegle" },
     { value: "none", label: "Pas de trickster" },
   ],
 }
@@ -124,42 +124,42 @@ function generatePrompt(values: FormValues): string {
 
   const worldLabels: Record<string, string> = {
     space: "une aventure spatiale",
-    forest: "une forêt magique",
+    forest: "une foret magique",
     dinosaurs: "un monde de dinosaures",
-    knights: "un royaume de chevaliers et châteaux",
+    knights: "un royaume de chevaliers et chateaux",
     cowboys: "le Far West des cowboys",
     animals: "un monde d'animaux parlants",
   }
 
   const heroLabels: Record<string, string> = {
     explorer: "un explorateur curieux",
-    dreamer: "un rêveur timide",
+    dreamer: "un reveur timide",
     adventurer: "un aventurier courageux",
     thinker: "un penseur malin",
-    troublemaker: "un farceur espiègle",
+    troublemaker: "un farceur espiegle",
   }
 
   const challengeLabels: Record<string, string> = {
     fear: "affronter ses peurs (le noir, la solitude, l'inconnu)",
-    problem: "résoudre un problème difficile",
+    problem: "resoudre un probleme difficile",
     danger: "sauver quelqu'un en danger",
     misunderstanding: "clarifier un malentendu",
-    competition: "relever un défi ou une compétition",
+    competition: "relever un defi ou une competition",
   }
 
   const villainLabels: Record<string, string> = {
-    mirror: "un reflet sombre partageant les compétences et pouvoirs du héros",
+    mirror: "un reflet sombre partageant les competences et pouvoirs du heros",
     believer: "un fanatique convaincu de faire le bien en commettant le mal",
-    chaos: "un nihiliste qui veut simplement voir le monde brûler",
-    authority: "un leader oppressif utilisant le système pour écraser les autres",
+    chaos: "un nihiliste qui veut simplement voir le monde bruler",
+    authority: "un leader oppressif utilisant le systeme pour ecraser les autres",
     nature: "une force primale imparable avec laquelle on ne peut pas raisonner",
     none: "",
   }
 
   const mentorLabels: Record<string, string> = {
     animal: "un animal sage",
-    creature: "une créature magique",
-    friend: "un ami plus âgé",
+    creature: "une creature magique",
+    friend: "un ami plus age",
     object: "un objet parlant",
     none: "",
   }
@@ -167,14 +167,14 @@ function generatePrompt(values: FormValues): string {
   const tricksterLabels: Record<string, string> = {
     silly: "un personnage rigolo",
     chaos: "un agent du chaos inattendu",
-    funny: "un créateur de malentendus drôles",
-    magic: "un farceur magique espiègle",
+    funny: "un createur de malentendus droles",
+    magic: "un farceur magique espiegle",
     none: "",
   }
 
   const themeLabels: Record<string, string> = {
     courage: "le courage",
-    friendship: "l'amitié",
+    friendship: "l'amitie",
     sharing: "le partage",
     patience: "la patience",
     confidence: "la confiance en soi",
@@ -183,36 +183,36 @@ function generatePrompt(values: FormValues): string {
   const toneLabels: Record<string, string> = {
     calm: "calme et apaisante",
     happy: "joyeuse et heureuse",
-    proud: "fière et valorisante",
-    moral: "avec une petite leçon de vie",
+    proud: "fiere et valorisante",
+    moral: "avec une petite lecon de vie",
   }
 
   const ageContext =
     values.childAge === "2-3"
-      ? "très simple, avec des phrases courtes et répétitives"
+      ? "tres simple, avec des phrases courtes et repetitives"
       : values.childAge === "4-5"
-        ? "adapté aux 4-5 ans, avec un vocabulaire accessible"
-        : "adapté aux 6 ans et plus, avec plus de détails et de nuances"
+        ? "adapte aux 4-5 ans, avec un vocabulaire accessible"
+        : "adapte aux 6 ans et plus, avec plus de details et de nuances"
 
   const villainName = values.villain !== "none" ? generateName() : null
 
-  let prompt = `Crée une histoire du soir pour un enfant de ${values.childAge} ans. L'histoire doit être ${ageContext}.
+  let prompt = `Cree une histoire du soir pour un enfant de ${values.childAge} ans. L'histoire doit etre ${ageContext}.
 
-**Durée de lecture** : ${values.duration} minutes
+**Duree de lecture** : ${values.duration} minutes
 
 **Univers** : ${worldLabels[values.world]}
 
-**Thème central** : ${themeLabels[values.theme]}
+**Theme central** : ${themeLabels[values.theme]}
 
-**Ton** : L'histoire doit être ${toneLabels[values.tone]}
+**Ton** : L'histoire doit etre ${toneLabels[values.tone]}
 
-**Défi principal** : ${heroName} devra ${challengeLabels[values.challenge]}
+**Defi principal** : ${heroName} devra ${challengeLabels[values.challenge]}
 
 ---
 
 **Personnages :**
 
-**Héros** : ${heroName}, ${heroLabels[values.hero]}`
+**Heros** : ${heroName}, ${heroLabels[values.hero]}`
 
   if (villainName && villainLabels[values.villain]) {
     prompt += `
@@ -236,35 +236,49 @@ function generatePrompt(values: FormValues): string {
 
 ---
 
-**Structure narrative à suivre (Le Voyage du Héros simplifié) :**
+**Structure narrative a suivre (Le Voyage du Heros simplifie) :**
 
 **Acte 1 - Mise en place**
 1. Monde ordinaire : La vie normale de ${heroName} avant tout changement
-2. Appel à l'aventure : Quelque chose perturbe son quotidien${villainName ? ` (lié à ${villainName})` : ""}
-3. Hésitation : ${heroName} doute ou a peur
-4. Rencontre du mentor : ${mentorName ? `${mentorName} apparaît pour l'aider` : "Une idée ou un courage intérieur émerge"}
+2. Appel a l'aventure : Quelque chose perturbe son quotidien${villainName ? ` (lie a ${villainName})` : ""}
+3. Hesitation : ${heroName} doute ou a peur
+4. Rencontre du mentor : ${mentorName ? `${mentorName} apparait pour l'aider` : "Une idee ou un courage interieur emerge"}
 5. Passage du seuil : ${heroName} s'engage dans l'aventure
 
 **Acte 2 - Transformation**
-6. Épreuves et alliés : ${heroName} découvre ce nouveau monde${tricksterName ? `, rencontre ${tricksterName}` : ""}
-7. Approche de la grotte : La tension monte${villainName ? ` face à ${villainName}` : ""}
-8. Épreuve centrale : ${heroName} affronte ${villainName ? villainName : "son défi"}
-9. Récompense : ${heroName} gagne quelque chose de précieux (sagesse, objet, confiance)
+6. Epreuves et allies : ${heroName} decouvre ce nouveau monde${tricksterName ? `, rencontre ${tricksterName}` : ""}
+7. Approche de la grotte : La tension monte${villainName ? ` face a ${villainName}` : ""}
+8. Epreuve centrale : ${heroName} affronte ${villainName ? villainName : "son defi"}
+9. Recompense : ${heroName} gagne quelque chose de precieux (sagesse, objet, confiance)
 10. Chemin du retour : Le retour commence mais tout n'est pas fini
 
-**Acte 3 - Résolution**
-11. Résurrection : Dernier test prouvant la transformation de ${heroName}
-12. Retour avec l'élixir : ${heroName} revient changé et apporte de la valeur aux autres
+**Acte 3 - Resolution**
+11. Resurrection : Dernier test prouvant la transformation de ${heroName}
+12. Retour avec l'elixir : ${heroName} revient change et apporte de la valeur aux autres
 
 ---
 
 **Conseils importants :**
-- Focus sur la transformation intérieure, pas seulement les événements
-- L'épreuve centrale doit être émotionnellement forte
+- Focus sur la transformation interieure, pas seulement les evenements
+- L'epreuve centrale doit etre emotionnellement forte
 - Les enjeux doivent augmenter progressivement
-- La fin doit apporter une vraie clôture émotionnelle`
+- La fin doit apporter une vraie cloture emotionnelle`
 
   return prompt
+}
+
+// Random gradient directions for glassmorphism cards
+const gradientDirections = [
+  'bg-gradient-to-br',
+  'bg-gradient-to-bl',
+  'bg-gradient-to-tr',
+  'bg-gradient-to-tl',
+  'bg-gradient-to-r',
+  'bg-gradient-to-l',
+]
+
+function getRandomGradient() {
+  return gradientDirections[Math.floor(Math.random() * gradientDirections.length)]
 }
 
 export function StoryForm() {
@@ -282,8 +296,12 @@ export function StoryForm() {
   })
   const [generatedPrompt, setGeneratedPrompt] = useState<string>("")
   const [copied, setCopied] = useState(false)
+  const [gradients, setGradients] = useState<string[]>([])
 
   useEffect(() => {
+    // Set random gradients for each section
+    setGradients([getRandomGradient(), getRandomGradient(), getRandomGradient()])
+    
     // Randomize on load
     setValues({
       childAge: getRandomOption(FORM_OPTIONS.childAge).value,
@@ -316,24 +334,29 @@ export function StoryForm() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <form onSubmit={handleSubmit} className="space-y-8">
+    <div className="w-full max-w-4xl mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-6">
         {/* Child Section */}
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground border-b border-border pb-2">
-            Enfant
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2">
+        <div className={`glass-strong rounded-2xl p-6 md:p-8 ${gradients[0]} from-[var(--gradient-green)]/5 to-transparent`}>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 rounded-xl bg-primary/10 text-primary">
+              <User className="h-5 w-5" />
+            </div>
+            <h2 className="text-xl font-semibold text-foreground">
+              Enfant
+            </h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
             {/* Child Age */}
             <div className="space-y-2">
               <Label htmlFor="childAge" className="text-sm font-medium text-foreground">
-                Âge
+                Age
               </Label>
               <Select value={values.childAge} onValueChange={(v) => updateValue("childAge", v)}>
-                <SelectTrigger id="childAge" className="bg-card border-border">
+                <SelectTrigger id="childAge" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.childAge.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -346,13 +369,13 @@ export function StoryForm() {
             {/* Duration */}
             <div className="space-y-2">
               <Label htmlFor="duration" className="text-sm font-medium text-foreground">
-                Durée
+                Duree
               </Label>
               <Select value={values.duration} onValueChange={(v) => updateValue("duration", v)}>
-                <SelectTrigger id="duration" className="bg-card border-border">
+                <SelectTrigger id="duration" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.duration.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -365,21 +388,26 @@ export function StoryForm() {
         </div>
 
         {/* Story Section */}
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground border-b border-border pb-2">
-            Histoire
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2">
+        <div className={`glass-strong rounded-2xl p-6 md:p-8 ${gradients[1]} from-[var(--gradient-blue)]/5 to-transparent`}>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 rounded-xl bg-accent/10 text-accent">
+              <BookOpen className="h-5 w-5" />
+            </div>
+            <h2 className="text-xl font-semibold text-foreground">
+              Histoire
+            </h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
             {/* World */}
             <div className="space-y-2">
               <Label htmlFor="world" className="text-sm font-medium text-foreground">
                 Univers
               </Label>
               <Select value={values.world} onValueChange={(v) => updateValue("world", v)}>
-                <SelectTrigger id="world" className="bg-card border-border">
+                <SelectTrigger id="world" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.world.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -392,13 +420,13 @@ export function StoryForm() {
             {/* Theme */}
             <div className="space-y-2">
               <Label htmlFor="theme" className="text-sm font-medium text-foreground">
-                Thème
+                Theme
               </Label>
               <Select value={values.theme} onValueChange={(v) => updateValue("theme", v)}>
-                <SelectTrigger id="theme" className="bg-card border-border">
+                <SelectTrigger id="theme" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.theme.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -414,10 +442,10 @@ export function StoryForm() {
                 Ton
               </Label>
               <Select value={values.tone} onValueChange={(v) => updateValue("tone", v)}>
-                <SelectTrigger id="tone" className="bg-card border-border">
+                <SelectTrigger id="tone" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.tone.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -430,13 +458,13 @@ export function StoryForm() {
             {/* Challenge */}
             <div className="space-y-2">
               <Label htmlFor="challenge" className="text-sm font-medium text-foreground">
-                Défi
+                Defi
               </Label>
               <Select value={values.challenge} onValueChange={(v) => updateValue("challenge", v)}>
-                <SelectTrigger id="challenge" className="bg-card border-border">
+                <SelectTrigger id="challenge" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.challenge.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -449,21 +477,26 @@ export function StoryForm() {
         </div>
 
         {/* Characters Section */}
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-foreground border-b border-border pb-2">
-            Personnages
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2">
+        <div className={`glass-strong rounded-2xl p-6 md:p-8 ${gradients[2]} from-[var(--gradient-purple)]/5 to-transparent`}>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 rounded-xl bg-[var(--gradient-purple)]/10 text-[var(--gradient-purple)]">
+              <Users className="h-5 w-5" />
+            </div>
+            <h2 className="text-xl font-semibold text-foreground">
+              Personnages
+            </h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
             {/* Hero */}
             <div className="space-y-2">
               <Label htmlFor="hero" className="text-sm font-medium text-foreground">
-                Héros
+                Heros
               </Label>
               <Select value={values.hero} onValueChange={(v) => updateValue("hero", v)}>
-                <SelectTrigger id="hero" className="bg-card border-border">
+                <SelectTrigger id="hero" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.hero.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -479,10 +512,10 @@ export function StoryForm() {
                 Antagoniste
               </Label>
               <Select value={values.villain} onValueChange={(v) => updateValue("villain", v)}>
-                <SelectTrigger id="villain" className="bg-card border-border">
+                <SelectTrigger id="villain" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.villain.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -498,10 +531,10 @@ export function StoryForm() {
                 Mentor
               </Label>
               <Select value={values.mentor} onValueChange={(v) => updateValue("mentor", v)}>
-                <SelectTrigger id="mentor" className="bg-card border-border">
+                <SelectTrigger id="mentor" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.mentor.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -517,10 +550,10 @@ export function StoryForm() {
                 Trickster
               </Label>
               <Select value={values.trickster} onValueChange={(v) => updateValue("trickster", v)}>
-                <SelectTrigger id="trickster" className="bg-card border-border">
+                <SelectTrigger id="trickster" className="glass border-border/50 h-12">
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-strong border-border/50">
                   {FORM_OPTIONS.trickster.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
@@ -535,27 +568,27 @@ export function StoryForm() {
         <Button
           type="submit"
           size="lg"
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+          className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-[var(--gradient-green)] via-[var(--gradient-blue)] to-[var(--gradient-purple)] hover:opacity-90 text-primary-foreground rounded-xl transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
         >
           <Sparkles className="mr-2 h-5 w-5" />
-          Générer le prompt
+          Generer le prompt
         </Button>
       </form>
 
       {generatedPrompt && (
-        <div className="mt-8 space-y-4">
+        <div className="mt-10 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground">Votre prompt :</h2>
+            <h2 className="text-xl font-semibold text-foreground">Votre prompt :</h2>
             <Button
               variant="outline"
               size="sm"
               onClick={handleCopy}
-              className="border-border hover:bg-secondary"
+              className="glass border-border/50 hover:bg-secondary/50"
             >
               {copied ? (
                 <>
-                  <Check className="mr-2 h-4 w-4 text-green-600" />
-                  Copié !
+                  <Check className="mr-2 h-4 w-4 text-[var(--gradient-green)]" />
+                  Copie !
                 </>
               ) : (
                 <>
@@ -565,13 +598,13 @@ export function StoryForm() {
               )}
             </Button>
           </div>
-          <div className="bg-card border border-border rounded-lg p-4 max-h-96 overflow-y-auto">
+          <div className="glass-strong rounded-2xl p-6 max-h-96 overflow-y-auto border-border/50">
             <pre className="whitespace-pre-wrap text-sm text-foreground font-sans leading-relaxed">
               {generatedPrompt}
             </pre>
           </div>
           <p className="text-sm text-muted-foreground text-center">
-            Copiez ce prompt et collez-le dans votre IA préférée (ChatGPT, Claude, Mistral...)
+            Copiez ce prompt et collez-le dans votre IA preferee (ChatGPT, Claude, Mistral...)
           </p>
         </div>
       )}
